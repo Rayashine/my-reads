@@ -15,20 +15,19 @@ class App extends Component {
     componentDidMount() {
         this.getAllMyReads();
     };
-
+    // get all my reads
     getAllMyReads = () => {
         BooksAPI.getAll().then((books) => {
             this.setState({books});
         });
     }
-
     // update
     changeShelf = (book, shelf) => {
         BooksAPI.update(book, shelf).then((res) => {
             this.getAllMyReads();
         });
     }
-
+    // find books by query string
     queryBooks = (query) => {
         BooksAPI.search(query).then((search_books) => {
             for (let books_index = 0; books_index < this.state.books.length; books_index++) {

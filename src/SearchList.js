@@ -18,7 +18,6 @@ class SearchList extends Component {
 
     render() {
         const { books } = this.props;
-        console.log(books);
         return (
             <div>
                 <div className="search-books">
