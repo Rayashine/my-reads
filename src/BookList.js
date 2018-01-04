@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+/**
+ * html 结构借鉴了优达学城提供的代码 https://github.com/udacity/reactnd-project-myreads-starter/blob/master/README.md
+ */
 class BookList extends Component {
 
     onChangeShelf = (book, shelf) => {
