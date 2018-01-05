@@ -17,7 +17,16 @@ class SearchList extends Component {
     }
 
     render() {
-        const { books } = this.props;
+        const { searchBooks, books } = this.props;
+        // compare searchBooks width my reads,and set the correct shelf to everyone in searchBooks
+        for (let books_index = 0; books_index < books.length; books_index++) {
+            for (let search_books_index = 0; search_books_index < searchBooks.length; search_books_index++) {
+                if (searchBooks[search_books_index].id === books[books_index].id) {
+                    searchBooks[search_books_index] = books[books_index];
+                }
+            }
+        }
+
         return (
             <div>
                 <div className="search-books">
@@ -31,7 +40,7 @@ class SearchList extends Component {
                         </div>
                     </div>
                     <div className="search-books-results">
-                        <BookList books={books} onChangeShelf={(book, shelf) => {
+                        <BookList books={searchBooks} onChangeShelf={(book, shelf) => {
                             this.bookChangeShelf(book, shelf);
                         }}/>
                     </div>
