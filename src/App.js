@@ -30,15 +30,7 @@ class App extends Component {
     // find books by query string
     queryBooks = (query) => {
         BooksAPI.search(query).then((search_books) => {
-            for (let books_index = 0; books_index < this.state.books.length; books_index++) {
-                for (let search_books_index = 0; search_books_index < search_books.length; search_books_index++) {
-                    if (search_books[search_books_index].id === this.state.books[books_index].id) {
-                        search_books[search_books_index] = this.state.books[books_index];
-                    }
-                }
-            }
-
-            this.setState({search_books});
+            search_books && this.setState({search_books});
         });
     }
 
@@ -51,10 +43,10 @@ class App extends Component {
                        }}/>)}>
                 </Route>
                 <Route path='/search'
-                       render={() => (<SearchList books={this.state.search_books} changeQuery={(query) => {
+                       render={() => (<SearchList searchBooks={this.state.search_books} books={this.state.books} changeQuery={(query) => {
                            this.queryBooks(query);
                        }} onChangeShelf={(book, shelf) => {
-                           this.changeShelf(book, shelf, 'search');
+                           this.changeShelf(book, shelf);
                        }}/>)}>
                 </Route>
             </div>
